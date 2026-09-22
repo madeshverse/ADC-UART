@@ -34,9 +34,23 @@ Analyse timer and UART operation by toggling an LED at one-second intervals usin
 15. Run the program on the S32K144 board.
 
 ---
+## Program
+```
+#include "sdk_project_config.h"
+#include<stdio.h>
+int main(void){
+	CLOCK_DRV_Init(&clockMan1_InitConfig0);
+	PINS_DRV_Init(NUM_OF_CONFIGURED_PINS0, g_pin_mux_InitConfigArr0);
+	static char txBuff[64];
+	LPUART_DRV_Init(INST_LPUART_1, &lpUartState0, &lpuart_0_InitConfig0);
+	uint8_t len=(uint8_t)sprintf(txBuff, "Hello World");
+	LPUART_DRV_SendData(INST_LPUART_1, (const uint8_t *)txBuff, (uint8_t)len);
+}
+
+```
+---
 ## OUTPUT
-
-
+<img width="1915" height="1198" alt="image" src="https://github.com/user-attachments/assets/97a8d459-173e-4770-8ece-a3615e29df77" />
 
 
 
